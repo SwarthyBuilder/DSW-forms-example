@@ -8,7 +8,7 @@ app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  
 def render_main():
     return render_template('home.html')
    
-@app.route("/response")
+@app.route("/response", methods=['GET', 'POST'])
 def render_response():
     name = request.args['color'] 
     password =	string_utils.shuffle(name) + "3000"
@@ -16,5 +16,5 @@ def render_response():
     #args is an ImmutableMultiDict (like a dictionary but can have mutliple values for the same key and can't be changed)
     #The information in args is visible in the url for the page being requested. ex. .../response?color=blue
     return render_template('response.html',response = password)
-if __name__=="__main__":
+if __name__=="__main__" , request.method == 'POST':
     app.run(debug=False, port=54321)
